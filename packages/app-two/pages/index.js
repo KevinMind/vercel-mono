@@ -9,8 +9,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h1>App One</h1>
-        <a href={process.env.NEXT_PUBLIC_APP_TWO_HREF}>Visit App Two</a>
+        <h1>App Two</h1>
+        <a href={process.env.NEXT_PUBLIC_APP_ONE_HREF}>Visit App One</a>
       </div>
     </div>
   )
