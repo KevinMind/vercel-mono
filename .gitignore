@@ -1,0 +1,12 @@
+build/
+node_modules/
+.idea/
+.npmrc
+
+**/node_modules/
+**/.env
+**/build/
+**/coverage
+
+lerna.list.json
+lerna.changed.json
