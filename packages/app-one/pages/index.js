@@ -67,7 +67,7 @@ export default function Home() {
       default:
         return visible;
     }
-  })
+  });
   return (
     <>
       <Head>
