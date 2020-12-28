@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Filter } from 'todo-lib';
 
 const ControllerItem = ({ value = '', onSelect, selected = false }) => (
     <div onClick={() => onSelect(value)} className={`capitalize cursor-pointer py-1 px-3 border border-transparent hover:border-red-50 ${selected ? 'border border-red-100' : ''}`}>
@@ -6,7 +7,7 @@ const ControllerItem = ({ value = '', onSelect, selected = false }) => (
     </div>
 );
 
-const filters = ['all', 'active', 'complete'];
+const filters = Object.keys(Filter);
 
 export default function TodoController({ count, onChange, onClear, value }) {
     return (
@@ -16,7 +17,7 @@ export default function TodoController({ count, onChange, onClear, value }) {
             </div>
             <div className="flex items-center justify-around flex-grow">
                 {filters.map((filter) => (
-                    <ControllerItem value={filter} selected={filter === value} onSelect={onChange} />
+                    <ControllerItem value={Filter[filter]} selected={Filter[filter] === value} onSelect={onChange} />
                 ))}
             </div>
             <div onClick={onClear} className="cursor-pointer">

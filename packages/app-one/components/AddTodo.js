@@ -3,7 +3,7 @@ import * as React from 'react';
 const fontThin = 'font-thin text-gray-200';
 const fontThick = 'font-thick text-gray-500';
 
-export default function AddTodo({ onSubmit, visible, toggleVisible }) {
+export default function AddTodo({ onSubmit, todos, toggle }) {
     const [text, setText] = React.useState('');
 
     const handleChange = ({ target: { value }}) => {
@@ -15,7 +15,10 @@ export default function AddTodo({ onSubmit, visible, toggleVisible }) {
             onSubmit(text);
             setText('');
         }
-    }
+    };
+
+    const visible = todos.length > 0 && todos.every(({ done }) => done);
+    const toggleVisible = () => toggle(!visible);
 
     return (
         <div className="flex px-4 py-3 align-center space-between">
