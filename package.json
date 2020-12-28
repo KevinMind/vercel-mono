@@ -24,6 +24,7 @@
     "test": "lerna run test --stream --parallel --",
     "lint": "lerna run lint --stream --parallel --",
     "build": "lerna run build",
+    "build:ci": "node scripts/build.js",
     "prepublish": "lerna run prepublish",
     "publish-sh": "./utils/publish.sh",
     "git-reset": "git reset --hard HEAD",
