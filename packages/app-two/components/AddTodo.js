@@ -15,7 +15,7 @@ const ToggleVisible = ({ onClick, active }) => (
     </Button>
 )
 
-export default function AddTodo({ onSubmit, onToggleVisible, visible }) {
+export default function AddTodo({ onSubmit, active, toggle }) {
     const [value, setValue] = useState('');
 
     const handleSubmit = (e) => {
@@ -26,10 +26,11 @@ export default function AddTodo({ onSubmit, onToggleVisible, visible }) {
     }
 
     const handleChange = ({ target: { value }}) => setValue(value);
+
     return (
         <Flex p={4}>
             <Box mr={2}>
-                <ToggleVisible onClick={onToggleVisible} active={visible} />
+                <ToggleVisible onClick={toggle} active={active} />
             </Box>
             <Box>
                 <Input

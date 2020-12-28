@@ -26,7 +26,7 @@ type AddTodo = (text: string) => void;
 type RemoveTodo = (id: string) => void;
 type ToggleTodo = (id: string) => void;
 type ClearComplete = () => void;
-type ToggleAll = (done: boolean) => void;
+type ToggleAll = () => void;
 
 type SetFilter = (filter: Filter) => void;
 
@@ -34,6 +34,7 @@ export const useTodos = (
   defaultTodos: TodoList = []
 ): {
   count: number;
+  allDone: boolean;
   filter: Filter;
   setFilter: SetFilter;
   todos: TodoList;
@@ -45,6 +46,8 @@ export const useTodos = (
 } => {
   const [filter, setFilter] = useState<Filter>(Filter.all);
   const [todos, setTodos] = useState<TodoList>(defaultTodos);
+
+  const allDone = todos.every(todo => todo.done);
 
   const addTodo: AddTodo = text =>
     setTodos([...todos, { text, done: false, id: uuidv4() }]);
@@ -73,8 +76,8 @@ export const useTodos = (
     setTodos(newTodos);
   };
 
-  const toggleAll: ToggleAll = isDone => {
-    const newTodos = todos.map(todo => ({ ...todo, done: isDone }));
+  const toggleAll: ToggleAll = () => {
+    const newTodos = todos.map(todo => ({ ...todo, done: !allDone }));
     setTodos(newTodos);
   };
 
@@ -83,15 +86,18 @@ export const useTodos = (
       case Filter.active:
         return !todo.done;
       case Filter.complete:
-        return todo.done;
+        return !!todo.done;
       case Filter.all:
       default:
         return true;
     }
   });
 
+  console.log({ filter, filtered, todos });
+
   return {
     count: todos.length,
+    allDone,
     filter,
     setFilter,
     todos: filtered,

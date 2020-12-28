@@ -9,7 +9,7 @@ import TodoController from '../components/TodoController';
 
 
 export default function Home() {
-  const { count, todos, addTodo, toggleTodo, toggleAll, removeTodo, clearComplete, filter, setFilter } = useTodos([{ id: '123', text: 'complete', done: true }, { id: '456', text: 'in complete', done: false }]);
+  const { count, allDone, todos, addTodo, toggleTodo, toggleAll, removeTodo, clearComplete, filter, setFilter } = useTodos([{ id: '123', text: 'complete', done: true }, { id: '456', text: 'in complete', done: false }]);
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <AddTodo onSubmit={addTodo} todos={todos} toggle={toggleAll} />
+        <AddTodo onSubmit={addTodo} active={allDone} toggle={toggleAll} />
         <TodoList
           todos={todos}
           onToggle={toggleTodo}

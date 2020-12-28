@@ -1,6 +1,8 @@
 import { Flex, Box, Button, HStack } from '@chakra-ui/react';
 
-const filters = ['all', 'active', 'complete'];
+import { Filter } from 'todo-lib';
+
+const filters = Object.keys(Filter);
 
 export default function TodoController({ count, onSelect, onClear, value }) {
     return (
@@ -12,8 +14,9 @@ export default function TodoController({ count, onSelect, onClear, value }) {
                 <HStack>
                     {filters.map((filter) => (
                         <Button
+                            key={filter}
                             size="sm"
-                            variant={filter === value ? 'outline' : 'ghost'}
+                            variant={Filter[filter] === value ? 'outline' : 'ghost'}
                             borderColor="red.200"
                             onClick={() => onSelect(filter)}
                             textTransform="capitalize"

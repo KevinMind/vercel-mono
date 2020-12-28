@@ -64,6 +64,11 @@ describe('useTodos', () => {
       { id: 'one', text: 'sample', done: false },
       { id: 'two', text: 'sample', done: false },
     ]);
+    act(() => result.current.toggleAll(true));
+    expect(result.current.todos).toEqual([
+      { id: 'one', text: 'sample', done: true },
+      { id: 'two', text: 'sample', done: true },
+    ]);
   });
 
   // set filter

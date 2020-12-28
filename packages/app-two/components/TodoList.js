@@ -55,7 +55,7 @@ export default function TodoList({ todos, onToggle, onRemove }) {
     return (
         <Box boxShadow="inner">
             {Array.isArray(todos) ? todos.map(todo => (
-                <Box borderColor="gray.200" borderTopWidth={1} px={4}>
+                <Box borderColor="gray.200" borderTopWidth={1} px={4} key={todo.id}>
                     <Todo
                         {...todo}
                         onRemove={onRemove}
